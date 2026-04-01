@@ -26,3 +26,28 @@
 // });
 
 // server.listen(3000);
+
+// create four routes using express.js
+const express = require("express");
+const app = express();
+
+app.get("/",(req ,res)=>{
+    res.send("Home Pages");
+})
+
+app.get("/about",(req ,res)=>{
+    res.send("about Pages");
+})
+
+app.get("/profile",(req ,res)=>{
+    res.send("profile Pages");
+})
+
+app.get("/contact",(req ,res)=>{
+    res.send("Contact Pages");
+})
+
+// listen to server
+app.listen(3000 ,(req,res)=>{
+    console.log(`server is running on port ${3000}`)
+})
