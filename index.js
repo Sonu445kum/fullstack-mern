@@ -139,6 +139,7 @@ const app = express();
 //  Middleware to parse form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"))
 
 //  Morgan logger
 app.use(morgan("dev"));
