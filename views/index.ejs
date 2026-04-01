@@ -3,11 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Form Submit</title>
 </head>
 <body>
-    <h1>Helloo sonu</h1>
-    <small>This is a page of index.html</small>
-    <p>hii there</p>
+
+    <h1>Form Submit</h1>
+
+    <form action="/get-form-data" method="POST">
+        
+        <label>Name:</label>
+        <input type="text" name="username" placeholder="Enter Username" required>
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="Enter Email" required>
+        <br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter Password" required>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
 </body>
 </html>

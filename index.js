@@ -95,38 +95,92 @@
 // built in middlewere
 // example-> morgan ->it is http request logger middlewere in nodejs
 
+// const express = require("express");
+// const morgan = require("morgan");
+// const app = express();
+
+// app.use(morgan("dev"));
+
+// app.set("view engine","ejs");
+
+// app.use("/", (req,res,next)=>{
+//     console.log("Morgan middlewere");
+//     let a = 5;
+//     let b = 6;
+//     console.log("a+b:",a+b);
+//     next();
+// })
+
+// // routes
+// app.get("/",(req,res)=>{
+//     console.log("Home Pages");
+//     res.render("index")
+// });
+
+// app.get("/about",(req,res)=>{
+//     console.log("about pages");
+//     res.send("about pages..!!");
+// });
+
+// app.get("/contact",(req,res)=>{
+//     console.log("contact pages..!!!");
+//     res.send("contact pages..!!!");
+// })
+
+// app.listen(3000,(req ,res)=>{
+//     console.log(`server is running on the port:${3000}`)
+// })
+
 const express = require("express");
 const morgan = require("morgan");
+
 const app = express();
 
+//  Middleware to parse form data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//  Morgan logger
 app.use(morgan("dev"));
 
-app.set("view engine","ejs");
+//  Set EJS
+app.set("view engine", "ejs");
 
-app.use((req,res,next)=>{
-    console.log("Morgan middlewere");
-    let a = 5;
-    let b = 6;
-    console.log("a+b:",a+b);
+//  Custom middleware
+app.use((req, res, next) => {
+    console.log("Custom Middleware Running...");
+    console.log("a+b:", 5 + 6);
     next();
-})
-
-// routes
-app.get("/",(req,res)=>{
-    console.log("Home Pages");
-    res.render("index")
 });
 
-app.get("/about",(req,res)=>{
-    console.log("about pages");
-    res.send("about pages..!!");
+//  Home route (Render form)
+app.get("/", (req, res) => {
+    console.log("Home Page");
+    res.render("index");
 });
 
-app.get("/contact",(req,res)=>{
-    console.log("contact pages..!!!");
-    res.send("contact pages..!!!");
-})
+//  Handle form submission
+app.post("/get-form-data", (req, res) => {
+    console.log("Form Data Received:");
+    console.log(req.body); 
 
-app.listen(3000,(req ,res)=>{
-    console.log(`server is running on the port:${3000}`)
-})
+    res.send(`
+        <h2>Data Received Successfully</h2>
+        <p>Name: ${req.body.username}</p>
+        <p>Email: ${req.body.email}</p>
+    `);
+});
+
+//  Other routes
+app.get("/about", (req, res) => {
+    res.send("About Page");
+});
+
+app.get("/contact", (req, res) => {
+    res.send("Contact Page");
+});
+
+//  Start server
+app.listen(3000, () => {
+    console.log("Server running on http://localhost:3000");
+});
