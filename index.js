@@ -28,26 +28,65 @@
 // server.listen(3000);
 
 // create four routes using express.js
+// const express = require("express");
+// const app = express();
+
+// app.get("/",(req ,res)=>{
+//     res.send("Home Pages");
+// })
+
+// app.get("/about",(req ,res)=>{
+//     res.send("about Pages");
+// })
+
+// app.get("/profile",(req ,res)=>{
+//     res.send("profile Pages");
+// })
+
+// app.get("/contact",(req ,res)=>{
+//     res.send("Contact Pages");
+// })
+
+// // listen to server
+// app.listen(3000 ,(req,res)=>{
+//     console.log(`server is running on port ${3000}`)
+// })
+
+// How to display html files
 const express = require("express");
 const app = express();
 
+app.set("view engine","ejs");
+
+app.use("/",(req,res,next)=>{
+    console.log("This is a Middlewere");
+    let a = 5;
+    let b = 6;
+    console.log("a + b:",a+b);
+    return next();
+})
+// create 4 four routes
 app.get("/",(req ,res)=>{
-    res.send("Home Pages");
+    console.log("Home Page");
+    // res.send("Home Pages...!!");
+    res.render("index")
 })
 
 app.get("/about",(req ,res)=>{
-    res.send("about Pages");
+    console.log("about Page");
+    res.send("about Pages...!!");
 })
 
-app.get("/profile",(req ,res)=>{
-    res.send("profile Pages");
+app.get("/profiles",(req ,res)=>{
+    console.log("profiles Page");
+    res.send("profiles Pages...!!");
 })
 
 app.get("/contact",(req ,res)=>{
-    res.send("Contact Pages");
+    console.log("contact Page");
+    res.send("contact Pages...!!");
 })
 
-// listen to server
-app.listen(3000 ,(req,res)=>{
-    console.log(`server is running on port ${3000}`)
+app.listen(3000,(req,res)=>{
+    console.log(`Server is running on the port ${3000}`)
 })
